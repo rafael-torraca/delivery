@@ -1,3 +1,4 @@
+# clean nao remove pastas no wsl2 windows.
 clean:
 	@find ./ -name '*.pyc' -exec rm -f {} \;
 	@find ./ -name 'Thumbs.db' -exec rm -f {} \;
@@ -9,7 +10,7 @@ clean:
 	rm -rf htmlcov
 	rm -rf .tox/
 	rm -rf docs/_build
-	pip install -e .[dev] --upgrade --no-cache
+	pip install -e .['dev'] --upgrade --no-cache
 
 uninstall:
 	pip uninstall delivery
@@ -17,3 +18,12 @@ uninstall:
 
 install:
 	pip install -e .['dev']
+
+
+test:
+	pytest tests -v --cov=delivery
+
+# parte que eu coloquei
+developer:
+	export FLASK_APP=delivery/app.py
+	export FLASK_ENV=development
