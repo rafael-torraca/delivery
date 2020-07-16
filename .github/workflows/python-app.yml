@@ -2,11 +2,11 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
 name: Python application
-
 defaults:
   run:
     shell: bash
-    working-directory: /delivery
+    working-directory: ./delivery
+
 on:
   push:
     branches: [ master ]
@@ -25,8 +25,9 @@ jobs:
       with:
         python-version: 3.8
     - name: Install dependencies
-      run:
-        make install
+      run: |
+       make install
+       
     - name: Run tests
-      run:
-        make test
+      run: |
+       make test
